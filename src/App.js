@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import React from 'react';
 import './App.css';
+import {Routes, Route} from "react-router-dom"
+import {Home, About, Events, Contact, NotFound, 
+  Services, Location, CompanyHistory} from "./pages"
 
 
-function SecretComponent(){
-  return <h1>Secret component</h1>;
-}
-
-function RegularComponent(){
-  return <h1>Everyone can see this component</h1>;
-}
-
-function App(props) {
+function App() {
   return (
-  <>
-  {props.authorized ? <SecretComponent /> : <RegularComponent />}
-    
-  </>    
-  );
+    <div>
+        <Routes>
+            <Route path="/" element={<Home/>} />
+            <Route path="/about" element={<About/>}>
+                <Route path="services" element={<Services/>} />
+                <Route path="location" element={<Location/>} />
+                <Route path="history" element={<CompanyHistory/>} />
+            </Route>
+            <Route path="/events" element={<Events/>} />
+            <Route path="/contact" element={<Contact/>} />
+            <Route path="/*" element={<NotFound/>} />
+        </Routes>
+    </div>
+  )
+  
+
+  
 }
 
 export default App;
